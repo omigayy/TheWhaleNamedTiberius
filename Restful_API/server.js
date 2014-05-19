@@ -73,8 +73,9 @@ router.route('/bears')
 		});
 	});
 
-// on riytes that end in /bears/:bear_id
-// -------------------------------------------------------------------
+// // on routes that end in /bears/:bear_id
+// // -------------------------------------------------------------------
+
 router.route('/bears/:bear_id')
 
 	// get the bear with that id (accessed at http://localhost:8080/api/bears/:bear_id)
@@ -118,6 +119,26 @@ router.route('/bears/:bear_id')
 			res.json({ message: 'Successfully deleted' });
 		});
 	});
+
+// on routes that end in /bears/:name
+// -------------------------------------------------------------------
+router.route('/bears/search/:name')
+	
+	.get(function(req, res){
+		console.log('in get');
+		var name = req.params.name;
+		Bear.find({name: name}, function(err, bears) {
+			if (err)
+				res.send(err);
+			res.json(bears);
+		});
+		// bear.find({name: /+name+/i}, 'name', function(err, bears) {
+		// 	if (err)
+		// 		res.send(err);
+		// 	res.json(bears);
+		// });
+	});
+	// http://localhost:8080/api/bears/537671662dc45be83d000001
 
 // REGISTER OUR ROUTES------------------------------------------------
 // all of our routes will be prefixed with /api
