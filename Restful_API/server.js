@@ -127,16 +127,17 @@ router.route('/bears/search/:name')
 	.get(function(req, res){
 		console.log('in get');
 		var name = req.params.name;
-		Bear.find({name: name}, function(err, bears) {
+		Bear.find({name: name }, function(err, bears) {
 			if (err)
 				res.send(err);
 			res.json(bears);
 		});
-		// bear.find({name: /+name+/i}, 'name', function(err, bears) {
-		// 	if (err)
-		// 		res.send(err);
-		// 	res.json(bears);
-		// });
+		Bear.count({ name: name }, function(err, count) {
+			if (err)
+				res.send(err);
+			//res.json(bears)
+			console.log('There is %d bear(s) named '+name, count);
+		});
 	});
 	// http://localhost:8080/api/bears/537671662dc45be83d000001
 
