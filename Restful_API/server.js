@@ -7,6 +7,11 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname, 'views'));
+
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'html');
 
 var mongoose   = require('mongoose');
 //mongoose.connect('mongodb://localhost:27017/restfulapi'); // connect to our database
@@ -29,6 +34,7 @@ var port = process.env.PORT || 8080; // set our port
 // Routes for our API
 // ========================================================================
 var router = express.Router();
+// app.use(express.staticProvider(__dirname+'/'));
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
@@ -39,7 +45,9 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api) 
 router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!'});
+	// link(href='/css/bootstrap.css', rel='stylesheet');
+
+	res.render('frontEndRestful.html');
 });
 
 // more routes for our API will happen here
@@ -127,15 +135,17 @@ router.route('/bears/search/:name')
 	.get(function(req, res){
 		console.log('in get');
 		var name = req.params.name;
-		Bear.find({name: name }, function(err, bears) {
+		Bear.find({name: name}, function(err, bears) {
 			if (err)
 				res.send(err);
+			console.log("Sending bear back");
 			res.json(bears);
 		});
+
 		Bear.count({ name: name }, function(err, count) {
 			if (err)
 				res.send(err);
-			//res.json(bears)
+			
 			console.log('There is %d bear(s) named '+name, count);
 		});
 	});
