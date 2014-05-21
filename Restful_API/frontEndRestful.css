@@ -1,0 +1,36 @@
+body {
+	width: 90%;
+	margin: 0 auto;
+	background-color: white; 
+}
+
+h1 {
+	text-align: center;
+	color: black;
+	font-family: Helvetica;
+}
+
+#header {
+	background-color: #efefef
+}
+
+#formDiv {
+	text-align: center;
+	background-color: #efefef;
+	width: 49%;
+	height: 250px;
+	float: left;
+	display: block;
+}
+
+.results {
+	background-color: black;
+	width: 49%;
+	float: right;
+	display: block;
+	text-align: center;
+	height: 250px;
+	overflow: scroll;
+	color: white;
+}
+
