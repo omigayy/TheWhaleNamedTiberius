@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Plains, Trains and Bears?</title>
+	<link href="frontEndRestful.css" rel="stylesheet" type="text/css">
+	<script src="jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+	<div id ="header">
+		<h1 id = "BearTitle">Bears Need names too!</h1>
+	</div>
+	<div id ="formDiv">
+		<form action="">
+			<br>
+			<p>Search for bears by name or ID:</p>
+			<input class="inputfield" type="search" name ="search" />
+			<button class="submit" name="submit" type="button">submit</button> 
+			<div>
+				<ul class="resultList">
+				</ul>
+			</div>
+		</form>
+		<br>
+		<form>
+			<p>Create a new bear, please enter a name you would like to give the new bear.</p>
+			<input class="inputfield1" type="search" name ="search1" />
+			<button class="create" name="create" type="button">create</button> 
+		</form>
+	</div>
+	<div class="results"></div>
+	
+	<script type="text/javascript">
+
+		// $(function(){
+			function findBear(name) {
+				alert("WOOHOO!!!");
+				var reqURL = '/api/bears/search/'+name;
+				console.log(reqURL);
+				$.ajax({
+					type: 'GET',
+					url: reqURL,
+					success: function(data){
+						console.log(data);
+						$('.results').empty();
+						$.each(data, function (index, value){
+							var htmlString = '<div>'+data[0]['name']+"    "+data[0]['_id']+'</div>';
+							console.log(data);
+							$('.results').append(htmlString);
+						});
+					},  // success
+					error:function(jqxhr, textstatus, errorthrown) {
+						console.log(errorthrown);
+					} // error
+				}); //ajax
+			} // find bear
+
+			function populateDropDown (data) {
+				$('.resultList').empty();
+				$.each(data, function (index, val) {
+					$('.resultList').append("<li>"+data[0]['name']+"</li>")//val.name
+				});// each
+			} //populateDropDown
+
+			function getAllBears() {
+				$.ajax({
+					type: 'GET',
+					url: '/api/bears',
+					seccess: function(data) {
+						populateDropDown(data);
+					}//success
+					// error: function(jqxhr, textstatus, errorthrown) {
+					// 	console.log(errorthrown);
+					// } // error
+				}); //ajax
+			} //getAllBears
+			
+			// start dropDown
+			$('.inputfield:focus').change(function(){
+				var criteria = $('.inputfield').val();
+				if (criteria.length === 0){
+					getAllBears();
+				}
+				else
+				{
+					$.ajax({
+						type: 'GET',
+						url: 'api/bears/search/'+criteria,
+						seccess: function(data) {
+							populateDropDown(data);
+						}//success
+						// error:function(jqxhr, textstatus, errorthrown) {
+						// 	console.log(errorthrown);
+						// } // error
+					}); //ajax
+				} //else
+
+			}); // start of drop down menu 
+
+			$('.submit').click(function(){
+				var x = $('.inputfield').val();
+				findBear(x);
+			});
+
+
+		// });
+	</script>
+</body>
+</html>
