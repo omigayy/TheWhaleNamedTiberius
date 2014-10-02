@@ -135,7 +135,7 @@ router.route('/bears/search/:name')
 	.get(function(req, res){
 		console.log('in get');
 		var name = req.params.name;
-		Bear.find({name: name}, function(err, bears) {
+		Bear.find({name: {"$in" : [name]}}, function(err, bears) {
 			if (err)
 				res.send(err);
 			console.log("Sending bear back");

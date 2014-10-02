@@ -44,7 +44,7 @@
 						console.log(data);
 						$('.results').empty();
 						$.each(data, function (index, value){
-							var htmlString = '<div>'+data[0]['name']+"    "+data[0]['_id']+'</div>';
+							var htmlString = '<div>'+data[0]['name']+"  "+data[0]['_id']+'</div>';
 							console.log(data);
 							$('.results').append(htmlString);
 						});
@@ -66,7 +66,8 @@
 				$.ajax({
 					type: 'GET',
 					url: '/api/bears',
-					seccess: function(data) {
+					success: function(data) {
+						console.log("getting all bears");
 						populateDropDown(data);
 					}//success
 					// error: function(jqxhr, textstatus, errorthrown) {
@@ -75,14 +76,20 @@
 				}); //ajax
 			} //getAllBears
 			
+			$('.inputfield').click(function(){
+				getAllBears();
+			});
+
 			// start dropDown
-			$('.inputfield:focus').change(function(){
+			$('.inputfield').on('input',function(){
+				console.log("in change...");
 				var criteria = $('.inputfield').val();
-				if (criteria.length === 0){
-					getAllBears();
-				}
-				else
-				{
+				console.log(criteria);
+				// if (criteria.length < 1){
+				// 	getAllBears();
+				// }
+				// else
+				// {
 					$.ajax({
 						type: 'GET',
 						url: 'api/bears/search/'+criteria,
@@ -93,7 +100,7 @@
 						// 	console.log(errorthrown);
 						// } // error
 					}); //ajax
-				} //else
+				// } //else
 
 			}); // start of drop down menu 
 
