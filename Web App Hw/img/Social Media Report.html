@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)file:///home/evan/Desktop/working/SocialMediaReport/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta cahrset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Social Media Report</title>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" type="text/css" href="./Social Media Report_files/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="./Social Media Report_files/SocialMedaiReport.css">
+		
+		<!-- Scripts to get the Graphs to work -->
+		<script src="./Social Media Report_files/jquery.min.js"></script> <!-- look for more up-to-date jQuery -->
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+
+	</head>
+	<body>
+		<div class="container">
+			<div>
+				<h1>Web and Social Analytics</h1>
+				<hr>
+			</div>	
+			
+			<div class="row"> <!-- three rows of text here -->
+				<div class="col-md-4">
+					<p>
+						Lorem ipsum dolor sit amet, sea cudocendi elaboraret inciderint, eum in solum audiam nominati. Utinam animal audire an eum. Id vel dicta putent explicari, eu sed mollis me-diocrem. Eum volumus scripserit ne, magna decore deseruisse 
+					</p>
+				</div> <!-- ends col 1 -->
+				
+				<div class="col-md-4">
+					<p>
+						Lorem ipsum dolor sit amet, sea cudocendi elaboraret inciderint, eum in solum audiam nominati. Utinam animal audire an eum. Id vel dicta putent explicari, eu sed mollis me-diocrem. Eum volumus scripserit ne, magna decore deseruisse 
+					</p>
+				</div> <!-- ends col 2 -->
+				
+				<div class="col-md-4">
+					<p>
+						Lorem ipsum dolor sit amet, sea cudocendi elaboraret inciderint, eum in solum audiam nominati. Utinam animal audire an eum. Id vel dicta putent explicari, eu sed mollis me-diocrem. Eum volumus scripserit ne, magna decore deseruisse 
+					</p>
+				</div> <!-- ends col 3 -->
+			</div> <!-- ends Row -->
+		</div> <!--ends container for header and columns of text -->
+		<hr>
+		<div class="container"> <!-- Google Analytics --> 
+			<div>
+				<script src="./Social Media Report_files/usersGraph.js"></script>
+				<h1 class="SectionTitle">Growth Year Over Year</h1>
+				<hr>
+			</div>
+			<div class="row"> <!-- threes colums for graphs -->
+				<div class="col-md-4" id="users">
+					<!-- graph of users goes here -->
+					<p>Users</p>
+					
+				<svg width="250" height="300"><rect x="0" y="200" width="115" height="100" fill="#0266C8"></rect><rect x="125" y="175" width="115" height="125" fill="#0266C8"></rect><text x="55" y="214" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">100</text><text x="180" y="189" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">125</text></svg></div> <!-- end of users graph col -->
+				
+				<div class="col-md-4" id="sessions">
+					<!-- graph of sessions goes here -->
+					<p>Sessions</p>
+				</div> <!-- ends sessions graph col -->
+				
+				<div class="col-md-4" id="pageviews">
+					<!-- graph of pageviews goes here -->
+					<p>Pageviews</p>
+				</div> <!-- ends pagviesw graph col -->
+			</div> <!-- ends row for graphs -->
+			
+			<div>
+				<p>% of mobile sessions</p>
+				<h3>28%</h3>
+			</div>
+			
+			<div> <!-- should be centered on the page --> 
+				<!-- twelve month of page views line graph -->
+			</div>
+		</div> <!-- ends Google analytics container -->
+		<hr>
+		<div class="container" id="Facebook"> <!-- Facebook -->
+			<div>
+				<script src="./Social Media Report_files/FacebookGraphs.js"></script>
+				<h1 class="SectionTitle">Facebook</h1>
+				<hr>
+			</div>
+			<div class="row">
+				<div class="col-md-6" id="facebookEngagement">
+					<p>Total Fan Engagement</p>
+				<svg width="250" height="300"><rect x="0" y="244.4" width="115" height="55.6" fill="#8b9dc3"></rect><rect x="125" y="0" width="115" height="300" fill="#8b9dc3"></rect><text x="55" y="258.4" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">556</text><text x="180" y="14" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">3000</text></svg></div> <!-- ennds Fan Engagement graph -->
+				<div class="col-md-6" id="fansEngaged">
+					<p>Percent of Fans Engaged</p>
+				<svg width="250" height="300"><rect x="0" y="110" width="115" height="190" fill="#8b9dc3"></rect><rect x="125" y="170" width="115" height="130" fill="#8b9dc3"></rect><text x="55" y="124" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">19</text><text x="180" y="184" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">13</text></svg></div> <!-- ends % of engaged fans graph -->
+			</div> <!-- ends row for graphs -->
+			<div class="row">
+				<div class="col-md-5" id="mostPopPost">
+					
+				</div> <!-- ends most popular post -->
+				<div class="col-md-7">
+					
+				</div> <!-- ends stats of most popular post -->
+			</div> <!-- ends most popular post row -->
+		</div> <!-- ends Facebook container -->
+		<hr>
+		<div class="container"> <!-- Twitter -->
+			<div>
+				<script src="./Social Media Report_files/TwitterGraphs.js"></script>
+				<h1 class="SectionTitle">Twitter</h1>
+				<hr>
+			</div>
+			<div class="row">
+				<div class="col-md-6" id="twitterEngagement">
+					<p>Total Engagement</p>
+				<svg width="250" height="300"><rect x="0" y="255" width="115" height="45" fill="#0266C8"></rect><rect x="125" y="223" width="115" height="77" fill="#0266C8"></rect><text x="55" y="269" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">45</text><text x="180" y="237" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">77</text></svg></div> <!-- ennds Total Engagement graph -->
+				<div class="col-md-6" id="twitterRatio">
+					<p>Engagement to Post Ratio</p>
+				<svg width="250" height="300"><rect x="0" y="50" width="115" height="250" fill="#4099FF"></rect><rect x="125" y="37" width="115" height="263" fill="#4099FF"></rect><text x="55" y="64" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">2.5</text><text x="180" y="51" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">2.63</text></svg></div> <!-- Engagement to Post Ratio -->
+			</div> <!-- ends row for graphs -->
+			<hr>
+			<div class="row">
+				<div class="col-md-7">
+					<blockquote class="twitter-tweet" lang="en">
+						<p>I have never seen so many amazing internships and passionate people in one place before! Loved talkingâ€¦ <a href="http://t.co/RG2X2oOigK">http://t.co/RG2X2oOigK</a></p>— Dennis Hanno (@dhanno) <a href="https://twitter.com/dhanno/status/530809653031370753">November 7, 2014</a>
+					</blockquote>
+					<script async="" src="file://platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div> <!-- ends most popular tweet stats -->
+				<div class="col-md-5" id="mostPopTweet">
+					
+				</div> <!-- ends most popular Tweet -->
+			</div> <!-- ends most popular Tweet row -->
+		</div> <!-- ends Twitter container -->
+		<hr>
+		<div class="container"> <!-- Instagram -->
+			<div>
+				<script src="./Social Media Report_files/InstagramGraphs.js"></script>
+				<h1 class="SectionTitle">Instagram</h1>
+				<hr>
+			</div>
+			<div class="row">
+				<div class="col-md-6" id="instagramEngagement">
+					<p>Total Engagement</p>
+				<svg width="250" height="300"><rect x="0" y="182.3" width="115" height="117.7" fill="#517fa4"></rect><rect x="125" y="100.1" width="115" height="199.9" fill="#517fa4"></rect><text x="55" y="196.3" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">1177</text><text x="180" y="114.1" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">1999</text></svg></div> <!-- ennds Total Engagement graph -->
+				<div class="col-md-6" id="instagramRatio">
+					<p>Engagement to Post Ratio</p>
+				<svg width="250" height="300"><rect x="0" y="233.01" width="115" height="66.99" fill="#517fa4"></rect><rect x="125" y="200.5" width="115" height="99.5" fill="#517fa4"></rect><text x="55" y="247.01" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">66.99</text><text x="180" y="214.5" font-family="sans-serif" font-size="11px" fill="white" text-anchor="middle">99.5</text></svg></div> <!-- Engagement to Post Ratio -->
+			</div> <!-- ends row for graphs -->
+			<div class="row">
+				<div class="col-md-5" id="mostPopInsta">
+					
+				</div> <!-- ends most popular Instagram -->
+				<div class="col-md-7">
+					
+				</div> <!-- ends most popular Insta stats -->
+			</div> <!-- ends most popular Tweet row -->
+		</div> <!-- ends Twitter container -->
+	
+</body></html>

@@ -1,0 +1,15 @@
+.SectionTitle {
+	text-align: center;
+}
+
+.rect: hover {
+	fill: brown;
+}
+
+#Facebook {
+	background-color: #3b5998;
+}
+
+#Facebook p h1{
+	color: white;
+}
