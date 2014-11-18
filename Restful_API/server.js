@@ -14,8 +14,8 @@ app.use(express.static(__dirname, 'views'));
 // app.set('view engine', 'html');
 
 var mongoose   = require('mongoose');
-//mongoose.connect('mongodb://localhost:27017/restfulapi'); // connect to our database
-mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
+mongoose.connect('mongodb://localhost:27017/restfulapi'); // connect to our database
+//mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
 
 //var db = mongoose.connection;
 //db.on('error', console.error.bind(console, 'connection error:'));
@@ -29,7 +29,7 @@ var Bear = require('../Restful_API/models/bear');
 // this will let us get the data from a POST
 app.use(bodyParser());
 
-var port = process.env.PORT || 8080; // set our port
+var port = process.env.PORT || 1177; // set our port
 
 // Routes for our API
 // ========================================================================

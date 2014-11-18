@@ -1,3 +1,12 @@
+body {
+	background-color: #2c3e50;
+
+}
+
+/*#navcolor {
+	background-color: #ffffff;
+}*/
+
 .featurette-divider {
   margin: 80px 0; /* Space out the Bootstrap <hr> more */
 }
@@ -7,6 +16,7 @@
   font-weight: 300;
   line-height: 1;
   letter-spacing: -1px;
+  color: white
 }
 
 .marketing .col-lg-4 {
@@ -15,8 +25,10 @@
 }
 .marketing h2 {
   font-weight: normal;
+  color: white;
 }
 .marketing .col-lg-4 p {
   margin-right: 10px;
   margin-left: 10px;
+  color: white;
 }
