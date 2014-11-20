@@ -23,7 +23,7 @@ db.once('open', function callback () {
   console.log('yay!');
 });
 
-var Todo = require('../Bears/models/todo');
+var Todo = require('../Bears/models/bear');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -142,7 +142,7 @@ router.route('/todos/search/:name')
 				res.send(err);
 			console.log("Sending todo back");
 			res.json(todos);
-		todo
+		//todo
 		Todo.count({ name: name }, function(err, count) {
 			if (err)
 				res.send(err);
