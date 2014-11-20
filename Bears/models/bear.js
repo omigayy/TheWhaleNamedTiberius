@@ -2,10 +2,12 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 
-var BearSchema   = new Schema({
-	name: String,
-	notes: String
+var TaskSchema   = new Schema({
+	todo: String,
+	when: String,
+	instructions: String,
+	tag: String
 });
 
-module.exports = mongoose.model('Bear', BearSchema);
+module.exports = mongoose.model('Task', TaskSchema);
 

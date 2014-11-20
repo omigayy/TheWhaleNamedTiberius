@@ -23,7 +23,7 @@ db.once('open', function callback () {
   console.log('yay!');
 });
 
-var Bear = require('../Bears/models/bear');
+var Task = require('../Bears/models/bear');
 
 
 // configure app to use bodyParser()
@@ -52,78 +52,84 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-// on routes that end in /bears
+// on routes that end in /items
 // -----------------------------------------------------------------------
-router.route('/bears')
+router.route('/items')
 
-	// create a bear (accessed at POST http://localhost:8080/api/bears)
+	// create a to-do item (accessed at POST http://localhost:8080/api/items)
 	.post(function(req, res) {
 		console.log('in post');
 		
-		var bear = new Bear(); // create a new instance of the Bear model
-		bear.name = req.body.name; // set the bears name (comes from the request)
+		var task = new Task(); // create a new instance of the Bear model
+		task.todo = req.body.todo; // set what to do (comes from the request)
+		task.when = req.body.when; // set when to do it
+		task.instructions = req.body.instructions; //set any extra instuctions
+		task.tag = req.body.tag; // set a tag/keyword for searching
 
-		// save the bear and check for errors
-		console.log('new bear');
-		bear.save(function(err) {
+		// save the item and check for errors
+		console.log('new to-do item');
+		task.save(function(err) {
 			if (err)
 				//console.log(err);
 				res.send(err);
 			
-			res.json({ message: 'Bear created!' });
+			res.json({ message: 'To-do item created!' });
 		});
 	})
 
-	// get all the bears (accessed at GET http://localhost:8080/api/bears)
+	// get all the items (accessed at GET http://localhost:8080/api/items)
 	.get(function(req, res) {
-		Bear.find(function(err, bears) {
+		Task.find(function(err, tasks) {
 			if (err)
 				res.send(err);
 
-			res.json(bears);
+			res.json(tasks);
 		});
 	});
 
-// // on routes that end in /bears/:bear_id
+// // on routes that end in /items/:item_id
 // // -------------------------------------------------------------------
 
-router.route('/bears/:bear_id')
+router.route('/items/:item_id')
 
-	// get the bear with that id (accessed at http://localhost:8080/api/bears/:bear_id)
+	// get the item with that id (accessed at http://localhost:8080/api/items/:item_id)
 	.get(function(req,res) {
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		Task.findById(req.params.item_id, function(err, task) {
 			if (err)
 				res.send(err);
-			res.json(bear);
+			res.json(task);
 		});
 	})
 
-	// update the bear with this id (accessed at PUT http://localhost:8080/api/bears/:bear_id)
+	// update the item with this id (accessed at PUT http://localhost:8080/api/items/:item_id)
 	.put(function(req, res) {
 
-		// use our bear model to find the bear we want.
-		Bear.findById(req.params.bear_id, function(err, bear) {
+		// use our bear model to find the item we want.
+		Task.findById(req.params.item_id, function(err, task) {
 
 			if(err)
 				res.send(err);
 
-			bear.name = req.body.name; // update the bears info
+			task.todo = req.body.todo; // update the items todo field
+			task.when = req.body.when; // update when the item is due
+			task.instructions = req.body.instructions; // update the 
+			task.tag = req.body.tag; // update tag/keyword for searching
 
-			// save the bear
-			bear.save(function(err) {
+			// save the item
+			task.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({ message: 'Bear updated!' });
+				res.json({ message: 'Item updated!' });
 			});
 		});
 	})
 
-	// delete the bear with this id (accessed at DELETE http://localhost:8080/api/bears/:bear_id)
+	// delete the tag with this id (accessed at DELETE http://localhost:8080/api/items/:items_id)
 	.delete(function(req, res) {
-		Bear.remove({
-			_id: req.params.bear_id
-		}, function(err, bear) {
+		Task.remove({
+			_id: req.params.item_id
+		}, function(err, task) {
 			if (err)
 				res.send(err);
 
@@ -131,30 +137,30 @@ router.route('/bears/:bear_id')
 		});
 	});
 
-// on routes that end in /bears/:name
+// on routes that end in /tasks/:name
 // -------------------------------------------------------------------
-router.route('/bears/search/:name')
+router.route('/items/search/:tag')
 	
 	.get(function(req, res){
 		console.log('in get');
-		var name = req.params.name;
-		Bear.find({name: {"$in" : [name]}}, function(err, bears) {
+		var tag = req.params.tag;
+		Task.find({tag: {"$in" : [tag]}}, function(err, tasks) {
 			if (err)
 				res.send(err);
 
-			console.log("Sending bear back");
-			res.json(bears);
+			console.log("Sending item back");
+			res.json(tasks);
 		});
 
-		Bear.count({ name: name }, function(err, count) {
+		Task.count({ tag: tag }, function(err, count) {
 
 			if (err)
 				res.send(err);
 			
-			console.log('There is %d bear(s) named '+name, count);
+			console.log('There are %d items(s) with the tag "' + tag + '"', count);
 		});
 	});
-	// http://localhost:8080/api/bears/537671662dc45be83d000001
+	// http://localhost:8080/api/items/537671662dc45be83d000001
 
 // REGISTER OUR ROUTES------------------------------------------------
 // all of our routes will be prefixed with /api
