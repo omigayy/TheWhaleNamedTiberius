@@ -14,7 +14,6 @@ app.use(express.static(__dirname, 'views'));
 // app.set('view engine', 'html');
 
 var mongoose   = require('mongoose');
-//mongoose.connect('mongodb://localhost:27017/restfulapi'); // connect to our database
 mongoose.connect('mongodb://project2:project2@ds053130.mongolab.com:53130/todo'); // connect to our database
 
 var db = mongoose.connection;
@@ -23,7 +22,7 @@ db.once('open', function callback () {
   console.log('yay!');
 });
 
-var Task = require('../Bears/models/bear');
+var Task = require('../TodoList/models/todo');
 
 
 // configure app to use bodyParser()
@@ -60,7 +59,7 @@ router.route('/items')
 	.post(function(req, res) {
 		console.log('in post');
 		
-		var task = new Task(); // create a new instance of the Bear model
+		var task = new Task(); // create a new instance of the Task model
 		task.todo = req.body.todo; // set what to do (comes from the request)
 		task.when = req.body.when; // set when to do it
 		task.instructions = req.body.instructions; //set any extra instuctions
@@ -104,7 +103,7 @@ router.route('/items/:item_id')
 	// update the item with this id (accessed at PUT http://localhost:8080/api/items/:item_id)
 	.put(function(req, res) {
 
-		// use our bear model to find the item we want.
+		// use our task model to find the item we want.
 		Task.findById(req.params.item_id, function(err, task) {
 
 			if(err)
