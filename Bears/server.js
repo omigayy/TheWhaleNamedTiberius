@@ -23,11 +23,8 @@ db.once('open', function callback () {
   console.log('yay!');
 });
 
-<<<<<<< HEAD
-var Todo = require('../Bears/models/bear');
-=======
 var Bear = require('../Bears/models/bear');
->>>>>>> dd0a6cff2e3d1acd002db103b850c689720c1bdb
+
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -144,18 +141,13 @@ router.route('/bears/search/:name')
 		Bear.find({name: {"$in" : [name]}}, function(err, bears) {
 			if (err)
 				res.send(err);
-<<<<<<< HEAD
-			console.log("Sending todo back");
-			res.json(todos);
-		//todo
-		Todo.count({ name: name }, function(err, count) {
-=======
+
 			console.log("Sending bear back");
 			res.json(bears);
 		});
 
 		Bear.count({ name: name }, function(err, count) {
->>>>>>> dd0a6cff2e3d1acd002db103b850c689720c1bdb
+
 			if (err)
 				res.send(err);
 			
