@@ -23,7 +23,7 @@ db.once('open', function callback () {
   console.log('yay!');
 });
 
-var Todo = require('../Bears/models/todo');
+var Bear = require('../Bears/models/bear');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -51,78 +51,78 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-// on routes that end in /todos
+// on routes that end in /bears
 // -----------------------------------------------------------------------
-router.route('/todos')
+router.route('/bears')
 
-	// create a todo (accessed at POST http://localhost:8080/api/todos)
+	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
 		console.log('in post');
 		
-		var todo = new Todo(); // create a new instance of the todo model
-		todo.name = req.body.name; // set the todo's title (comes from the request)
+		var bear = new Bear(); // create a new instance of the Bear model
+		bear.name = req.body.name; // set the bears name (comes from the request)
 
-		// save the Todo and check for errors
-		console.log('new todo');
-		todo.save(function(err) {
+		// save the bear and check for errors
+		console.log('new bear');
+		bear.save(function(err) {
 			if (err)
 				//console.log(err);
 				res.send(err);
 			
-			res.json({ message: 'Todo created!' });
+			res.json({ message: 'Bear created!' });
 		});
 	})
 
-	// get all the todos (accessed at GET http://localhost:8080/api/todos)
+	// get all the bears (accessed at GET http://localhost:8080/api/bears)
 	.get(function(req, res) {
-		Todo.find(function(err, todos) {
+		Bear.find(function(err, bears) {
 			if (err)
 				res.send(err);
 
-			res.json(todos);
+			res.json(bears);
 		});
 	});
 
-// // on routes that end in /todos/:todo_id
+// // on routes that end in /bears/:bear_id
 // // -------------------------------------------------------------------
 
-router.route('/todos/:todo_id')
+router.route('/bears/:bear_id')
 
-	// get the to with that id (accessed at http://localhost:8080/api/todos/:todo_id)
+	// get the bear with that id (accessed at http://localhost:8080/api/bears/:bear_id)
 	.get(function(req,res) {
-		Todo.findById(req.params.todo_id, function(err, todo) {
+		Bear.findById(req.params.bear_id, function(err, bear) {
 			if (err)
 				res.send(err);
-			res.json(todo);
+			res.json(bear);
 		});
 	})
 
-	// update the todo with this id (accessed at PUT http://localhost:8080/api/todos/:todo_id)
+	// update the bear with this id (accessed at PUT http://localhost:8080/api/bears/:bear_id)
 	.put(function(req, res) {
 
-		// use our todo model to find the todo we want.
-		Todo.findById(req.params.todo_id, function(err, todo) {
+		// use our bear model to find the bear we want.
+		Bear.findById(req.params.bear_id, function(err, bear) {
 
 			if(err)
 				res.send(err);
 
-			todo.name = req.body.name; // update the todos info
+			bear.name = req.body.name; // update the bears info
 
-			// save the todo
-			todo.save(function(err) {
+			// save the bear
+			bear.save(function(err) {
 				if (err)
 					res.send(err);
 
-				res.json({ message: 'Todo updated!' });
+				res.json({ message: 'Bear updated!' });
 			});
 		});
 	})
 
-	// delete the todo with this id (accessed at DELETE http://localhost:8080/api/todos/:todo_id)
+	// delete the bear with this id (accessed at DELETE http://localhost:8080/api/bears/:bear_id)
 	.delete(function(req, res) {
-		Todo.remove({
-			_id: req.params.todo_id
-		}, function(err, todo) {
+		Bear.remove({
+			_id: req.params.bear_id
+		}, function(err, bear) {
 			if (err)
 				res.send(err);
 
@@ -130,27 +130,28 @@ router.route('/todos/:todo_id')
 		});
 	});
 
-// on routes that end in /todos/:name
+// on routes that end in /bears/:name
 // -------------------------------------------------------------------
-router.route('/todos/search/:name')
+router.route('/bears/search/:name')
 	
 	.get(function(req, res){
 		console.log('in get');
 		var name = req.params.name;
-		Todo.find({name: {"$in" : [name]}}, function(err, todos) {
+		Bear.find({name: {"$in" : [name]}}, function(err, bears) {
 			if (err)
 				res.send(err);
-			console.log("Sending todo back");
-			res.json(todos);
-		todo
-		Todo.count({ name: name }, function(err, count) {
+			console.log("Sending bear back");
+			res.json(bears);
+		});
+
+		Bear.count({ name: name }, function(err, count) {
 			if (err)
 				res.send(err);
 			
-			console.log('There is %d todo(s) named '+name, count);
+			console.log('There is %d bear(s) named '+name, count);
 		});
 	});
-	// http://localhost:8080/api/todos/537671662dc45be83d000001
+	// http://localhost:8080/api/bears/537671662dc45be83d000001
 
 // REGISTER OUR ROUTES------------------------------------------------
 // all of our routes will be prefixed with /api
